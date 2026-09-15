@@ -216,3 +216,1296 @@ header{
   margin-top:-25px;
   box-shadow:0 5px 15px #2563eb55;
 }
+
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
+
+.page{
+  padding:20px 16px 100px;
+}
+
+.back{
+  border:0;
+  background:white;
+  border-radius:12px;
+  padding:10px 14px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.page h2{
+  font-size:25px;
+  margin-bottom:20px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  font-weight:800;
+  margin-bottom:7px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;
+  border:1px solid #dce1e8;
+  background:white;
+  padding:14px;
+  border-radius:13px;
+  font-size:16px;
+  outline:none;
+}
+
+.form-group textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.primary{
+  width:100%;
+  border:0;
+  border-radius:14px;
+  padding:15px;
+  background:#2563eb;
+  color:white;
+  font-size:17px;
+  font-weight:900;
+  margin-top:5px;
+}
+
+.detail-image{
+  height:230px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#dbeafe,#eff6ff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:90px;
+  margin-bottom:20px;
+}
+
+.detail-price{
+  color:#2563eb;
+  font-size:27px;
+  font-weight:900;
+  margin:10px 0;
+}
+
+.detail-location{
+  color:#6b7280;
+  margin-bottom:20px;
+}
+
+.detail-box{
+  background:white;
+  border-radius:16px;
+  padding:16px;
+  margin-top:15px;
+  line-height:1.6;
+  box-shadow:0 3px 12px #00000010;
+}
+
+.message{
+  padding:15px;
+  background:#dcfce7;
+  color:#166534;
+  border-radius:13px;
+  margin-bottom:15px;
+  display:none;
+  font-weight:800;
+}
+
+.profile-card{
+  background:white;
+  border-radius:20px;
+  padding:25px 18px;
+  text-align:center;
+  box-shadow:0 4px 15px #00000010;
+}
+
+.avatar{
+  width:80px;
+  height:80px;
+  margin:auto;
+  border-radius:50%;
+  background:#2563eb;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  font-weight:900;
+  margin-bottom:15px;
+}
+
+.list{
+  margin-top:20px;
+}
+
+.list button{
+  width:100%;
+  border:0;
+  background:white;
+  padding:17px;
+  margin-bottom:10px;
+  border-radius:14px;
+  text-align:left;
+  font-weight:800;
+  box-shadow:0 2px 10px #0000000d;
+}
+
+.toast{
+  position:fixed;
+  left:20px;
+  right:20px;
+  bottom:85px;
+  background:#172033;
+  color:white;
+  padding:14px;
+  border-radius:13px;
+  text-align:center;
+  font-weight:800;
+  display:none;
+  z-index:100;
+}
+
+@media(max-width:380px){
+  .products{
+    gap:10px;
+  }
+
+  .logo{
+    font-size:24px;
+  }
+
+  .product-image{
+    height:120px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HOME -->
+<div id="homeScreen" class="screen active">
+
+<header>
+  <div class="logo">SUUQ SOMALILAND</div>
+
+  <div class="subtitle">
+    Suuqa Somaliland — Iibso, Iibi, Hel waxa aad rabto
+  </div>
+
+  <input
+    id="searchInput"
+    class="search"
+    type="search"
+    placeholder="Raadi alaabta..."
+  >
+</header>
+
+<div class="container">
+
+  <div class="title">Qaybaha</div>
+
+  <div class="categories">
+
+    <button class="category active" data-category="Dhammaan">
+      Dhammaan
+    </button>
+
+    <button class="category" data-category="Electronics">
+      📱 Electronics
+    </button>
+
+    <button class="category" data-category="Gaadiid">
+      🚗 Gaadiid
+    </button>
+
+    <button class="category" data-category="Guryo">
+      🏠 Guryo
+    </button>
+
+    <button class="category" data-category="Dharka">
+      👕 Dharka
+    </button>
+
+    <button class="category" data-category="Xoolo">
+      🐄 Xoolo
+    </button>
+
+  </div>
+
+  <div class="title" style="margin-top:25px;">
+    Alaabta cusub
+  </div>
+
+  <div id="products" class="products"></div>
+
+</div>
+</div>
+
+
+<!-- FAVORITES -->
+<div id="favoritesScreen" class="screen">
+
+<div class="page">
+
+  <h2>❤️ Munaasab</h2>
+
+  <div id="favoriteProducts" class="products"></div>
+
+</div>
+
+</div>
+
+
+<!-- ADD LISTING -->
+<div id="addScreen" class="screen">
+
+<div class="page">
+
+  <h2>➕ Ku dar xayeysiis</h2>
+
+  <div id="successMessage" class="message">
+    Xayeysiiska si guul leh ayaa loo daray!
+  </div>
+
+  <form id="listingForm">
+
+    <div class="form-group">
+      <label>Magaca alaabta</label>
+      <input
+        id="listingName"
+        type="text"
+        placeholder="Tusaale: iPhone 13"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label>Qiimaha</label>
+      <input
+        id="listingPrice"
+        type="number"
+        placeholder="Tusaale: 500"
+        min="0"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label>Magaalada</label>
+      <input
+        id="listingLocation"
+        type="text"
+        placeholder="Tusaale: Hargeysa"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label>Qaybta</label>
+
+      <select id="listingCategory" required>
+        <option value="">Dooro qaybta</option>
+        <option value="Electronics">📱 Electronics</option>
+        <option value="Gaadiid">🚗 Gaadiid</option>
+        <option value="Guryo">🏠 Guryo</option>
+        <option value="Dharka">👕 Dharka</option>
+        <option value="Xoolo">🐄 Xoolo</option>
+      </select>
+
+    </div>
+
+    <div class="form-group">
+      <label>Faahfaahin</label>
+
+      <textarea
+        id="listingDescription"
+        placeholder="Ku qor faahfaahinta alaabta..."
+      ></textarea>
+
+    </div>
+
+    <button class="primary" type="submit">
+      Ku daabac xayeysiiska
+    </button>
+
+  </form>
+
+</div>
+
+</div>
+
+
+<!-- PROFILE -->
+<div id="profileScreen" class="screen">
+
+<div class="page">
+
+  <h2>👤 Profile</h2>
+
+  <div class="profile-card">
+
+    <div class="avatar">S</div>
+
+    <h2 style="margin-bottom:5px;">
+      SUUQ SOMALILAND
+    </h2>
+
+    <p style="color:#6b7280;">
+      Suuqa online ee Somaliland
+    </p>
+
+  </div>
+
+  <div class="list">
+
+    <button onclick="showToast('Qaybtan waa la diyaarinayaa')">
+      📦 Xayeysiisyadayda
+    </button>
+
+    <button onclick="showToast('Qaybtan waa la diyaarinayaa')">
+      ⚙️ Settings
+    </button>
+
+    <button onclick="showToast('SUUQ SOMALILAND')">
+      ℹ️ About
+    </button>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<!-- DETAIL -->
+<div id="detailScreen" class="screen">
+
+<div class="page">
+
+  <button class="back" onclick="showScreen('homeScreen')">
+    ← Dib u noqo
+  </button>
+
+  <div id="detailContent"></div>
+
+</div>
+
+</div>
+
+
+<!-- BOTTOM NAVIGATION -->
+<div class="bottom-nav">
+
+  <button
+    id="homeNav"
+    class="nav-btn active"
+    onclick="showScreen('homeScreen')"
+  >
+    <span>🏠</span>
+    Home
+  </button>
+
+  <button
+    id="favoriteNav"
+    class="nav-btn"
+    onclick="showScreen('favoritesScreen')"
+  >
+    <span>❤️</span>
+    Favorites
+  </button>
+
+  <button
+    class="add-button"
+    onclick="showScreen('addScreen')"
+  >
+    +
+  </button>
+
+  <button
+    id="profileNav"
+    class="nav-btn"
+    onclick="showScreen('profileScreen')"
+  >
+    <span>👤</span>
+    Profile
+  </button>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+
+/* =========================
+   DEFAULT PRODUCTS
+========================= */
+
+const defaultProducts = [
+
+  {
+    id:1,
+    name:"Telefoon cusub",
+    price:250,
+    location:"Hargeysa",
+    category:"Electronics",
+    icon:"📱",
+    description:"Telefoon cusub oo tayo wanaagsan leh."
+  },
+
+  {
+    id:2,
+    name:"Gaadhi",
+    price:8500,
+    location:"Burco",
+    category:"Gaadiid",
+    icon:"🚗",
+    description:"Gaadhi iib ah oo xaalad wanaagsan ku jira."
+  },
+
+  {
+    id:3,
+    name:"Guri iib ah",
+    price:35000,
+    location:"Hargeysa",
+    category:"Guryo",
+    icon:"🏠",
+    description:"Guri ku yaal meel wanaagsan oo magaalada Hargeysa ah."
+  },
+
+  {
+    id:4,
+    name:"Dharka",
+    price:20,
+    location:"Burco",
+    category:"Dharka",
+    icon:"👕",
+    description:"Dharka tayo wanaagsan leh."
+  },
+
+  {
+    id:5,
+    name:"Xoolo",
+    price:300,
+    location:"Hargeysa",
+    category:"Xoolo",
+    icon:"🐄",
+    description:"Xoolo caafimaad qaba."
+  },
+
+  {
+    id:6,
+    name:"Laptop",
+    price:450,
+    location:"Hargeysa",
+    category:"Electronics",
+    icon:"💻",
+    description:"Laptop shaqo iyo waxbarasho ku habboon."
+  }
+
+];
+
+
+/* =========================
+   LOAD PRODUCTS
+========================= */
+
+let savedProducts =
+  localStorage.getItem("suuq_products");
+
+let products;
+
+try{
+
+  products = savedProducts
+    ? JSON.parse(savedProducts)
+    : defaultProducts.slice();
+
+  if(!Array.isArray(products)){
+    products = defaultProducts.slice();
+  }
+
+}catch(error){
+
+  products = defaultProducts.slice();
+
+}
+
+
+/* =========================
+   FAVORITES
+========================= */
+
+let favorites = [];
+
+try{
+
+  const savedFavorites =
+    localStorage.getItem("suuq_favorites");
+
+  favorites =
+    savedFavorites
+    ? JSON.parse(savedFavorites)
+    : [];
+
+  if(!Array.isArray(favorites)){
+    favorites=[];
+  }
+
+}catch(error){
+
+  favorites=[];
+
+}
+
+
+/* =========================
+   CURRENT CATEGORY
+========================= */
+
+let currentCategory = "Dhammaan";
+
+
+/* =========================
+   SAVE
+========================= */
+
+function saveData(){
+
+  try{
+
+    localStorage.setItem(
+      "suuq_products",
+      JSON.stringify(products)
+    );
+
+    localStorage.setItem(
+      "suuq_favorites",
+      JSON.stringify(favorites)
+    );
+
+  }catch(error){
+
+    console.log("Storage error");
+
+  }
+
+}
+
+
+/* =========================
+   PRICE
+========================= */
+
+function formatPrice(price){
+
+  const number = Number(price) || 0;
+
+  return "$" + number.toLocaleString();
+
+}
+
+
+/* =========================
+   DISPLAY PRODUCTS
+========================= */
+
+function renderProducts(){
+
+  const container =
+    document.getElementById("products");
+
+  if(!container) return;
+
+  const searchInput =
+    document.getElementById("searchInput");
+
+  const search =
+    searchInput
+      ? searchInput.value.toLowerCase().trim()
+      : "";
+
+  const filtered =
+    products.filter(product=>{
+
+      const categoryMatch =
+        currentCategory === "Dhammaan" ||
+        product.category === currentCategory;
+
+      const text =
+        (
+          product.name +
+          " " +
+          product.location +
+          " " +
+          product.category
+        ).toLowerCase();
+
+      const searchMatch =
+        !search || text.includes(search);
+
+      return categoryMatch && searchMatch;
+
+    });
+
+
+  container.innerHTML = "";
+
+
+  if(filtered.length === 0){
+
+    container.innerHTML = `
+      <div class="empty">
+        Alaab lama helin 😔
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  filtered.forEach(product=>{
+
+    const isFavorite =
+      favorites.includes(product.id);
+
+    const card =
+      document.createElement("div");
+
+    card.className = "card";
+
+    card.innerHTML = `
+
+      <button
+        class="favorite"
+        onclick="toggleFavorite(event,${product.id})"
+      >
+        ${isFavorite ? "❤️" : "♡"}
+      </button>
+
+      <div
+        class="product-image"
+        onclick="openProduct(${product.id})"
+      >
+        ${product.icon || "📦"}
+      </div>
+
+      <div
+        class="info"
+        onclick="openProduct(${product.id})"
+      >
+
+        <div class="name">
+          ${escapeHTML(product.name)}
+        </div>
+
+        <div class="price">
+          ${formatPrice(product.price)}
+        </div>
+
+        <div class="location">
+          📍 ${escapeHTML(product.location)}
+        </div>
+
+      </div>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(value){
+
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+const searchInput =
+  document.getElementById("searchInput");
+
+if(searchInput){
+
+  searchInput.addEventListener(
+    "input",
+    renderProducts
+  );
+
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+document
+  .querySelectorAll(".category")
+  .forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+      document
+        .querySelectorAll(".category")
+        .forEach(btn=>{
+          btn.classList.remove("active");
+        });
+
+      button.classList.add("active");
+
+      currentCategory =
+        button.dataset.category;
+
+      renderProducts();
+
+    });
+
+  });
+
+
+/* =========================
+   FAVORITE
+========================= */
+
+function toggleFavorite(event,id){
+
+  if(event){
+
+    event.stopPropagation();
+
+  }
+
+  const index =
+    favorites.indexOf(id);
+
+  if(index === -1){
+
+    favorites.push(id);
+
+    showToast("❤️ Waxaa lagu daray Favorites");
+
+  }else{
+
+    favorites.splice(index,1);
+
+    showToast("Waxaa laga saaray Favorites");
+
+  }
+
+  saveData();
+
+  renderProducts();
+
+  renderFavorites();
+
+}
+
+
+/* =========================
+   RENDER FAVORITES
+========================= */
+
+function renderFavorites(){
+
+  const container =
+    document.getElementById(
+      "favoriteProducts"
+    );
+
+  if(!container) return;
+
+  const favoriteProducts =
+    products.filter(product =>
+      favorites.includes(product.id)
+    );
+
+  container.innerHTML = "";
+
+
+  if(favoriteProducts.length === 0){
+
+    container.innerHTML = `
+      <div class="empty">
+        Weli wax Favorites ah ma jiraan ❤️
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  favoriteProducts.forEach(product=>{
+
+    const card =
+      document.createElement("div");
+
+    card.className = "card";
+
+    card.innerHTML = `
+
+      <button
+        class="favorite"
+        onclick="toggleFavorite(event,${product.id})"
+      >
+        ❤️
+      </button>
+
+      <div
+        class="product-image"
+        onclick="openProduct(${product.id})"
+      >
+        ${product.icon || "📦"}
+      </div>
+
+      <div
+        class="info"
+        onclick="openProduct(${product.id})"
+      >
+
+        <div class="name">
+          ${escapeHTML(product.name)}
+        </div>
+
+        <div class="price">
+          ${formatPrice(product.price)}
+        </div>
+
+        <div class="location">
+          📍 ${escapeHTML(product.location)}
+        </div>
+
+      </div>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================
+   OPEN PRODUCT
+========================= */
+
+function openProduct(id){
+
+  const product =
+    products.find(item =>
+      item.id === id
+    );
+
+  if(!product){
+
+    showToast("Alaabta lama helin");
+
+    return;
+
+  }
+
+
+  const isFavorite =
+    favorites.includes(product.id);
+
+
+  const detail =
+    document.getElementById(
+      "detailContent"
+    );
+
+
+  detail.innerHTML = `
+
+    <div class="detail-image">
+      ${product.icon || "📦"}
+    </div>
+
+    <h2>
+      ${escapeHTML(product.name)}
+    </h2>
+
+    <div class="detail-price">
+      ${formatPrice(product.price)}
+    </div>
+
+    <div class="detail-location">
+      📍 ${escapeHTML(product.location)}
+    </div>
+
+    <button
+      class="primary"
+      onclick="toggleFavorite(null,${product.id})"
+    >
+      ${isFavorite
+        ? "❤️ Ka saar Favorites"
+        : "♡ Ku dar Favorites"}
+    </button>
+
+    <div class="detail-box">
+
+      <strong>Qaybta:</strong>
+      ${escapeHTML(product.category)}
+
+      <br><br>
+
+      <strong>Faahfaahin:</strong>
+
+      <br>
+
+      ${escapeHTML(
+        product.description ||
+        "Faahfaahin lagama helin."
+      )}
+
+    </div>
+
+    <button
+      class="primary"
+      style="margin-top:15px;"
+      onclick="showToast('Xiriirka iibiyaha wuxuu diyaar noqon doonaa nooca xiga')"
+    >
+      💬 La xiriir iibiyaha
+    </button>
+
+  `;
+
+
+  showScreen("detailScreen");
+
+}
+
+
+/* =========================
+   ADD LISTING
+========================= */
+
+const listingForm =
+  document.getElementById(
+    "listingForm"
+  );
+
+
+if(listingForm){
+
+  listingForm.addEventListener(
+    "submit",
+    function(event){
+
+      event.preventDefault();
+
+
+      const name =
+        document.getElementById(
+          "listingName"
+        ).value.trim();
+
+
+      const price =
+        Number(
+          document.getElementById(
+            "listingPrice"
+          ).value
+        );
+
+
+      const location =
+        document.getElementById(
+          "listingLocation"
+        ).value.trim();
+
+
+      const category =
+        document.getElementById(
+          "listingCategory"
+        ).value;
+
+
+      const description =
+        document.getElementById(
+          "listingDescription"
+        ).value.trim();
+
+
+      if(
+        !name ||
+        !location ||
+        !category ||
+        !Number.isFinite(price) ||
+        price < 0
+      ){
+
+        showToast(
+          "Fadlan buuxi dhammaan meelaha muhiimka ah"
+        );
+
+        return;
+
+      }
+
+
+      let icon = "📦";
+
+
+      if(category === "Electronics"){
+        icon = "📱";
+      }
+
+      if(category === "Gaadiid"){
+        icon = "🚗";
+      }
+
+      if(category === "Guryo"){
+        icon = "🏠";
+      }
+
+      if(category === "Dharka"){
+        icon = "👕";
+      }
+
+      if(category === "Xoolo"){
+        icon = "🐄";
+      }
+
+
+      const newProduct = {
+
+        id:
+          Date.now() +
+          Math.floor(Math.random()*1000),
+
+        name:name,
+
+        price:price,
+
+        location:location,
+
+        category:category,
+
+        icon:icon,
+
+        description:
+          description ||
+          "Faahfaahin lagama helin."
+
+      };
+
+
+      products.unshift(
+        newProduct
+      );
+
+
+      saveData();
+
+
+      listingForm.reset();
+
+
+      const success =
+        document.getElementById(
+          "successMessage"
+        );
+
+
+      if(success){
+
+        success.style.display =
+          "block";
+
+        setTimeout(()=>{
+
+          success.style.display =
+            "none";
+
+        },3000);
+
+      }
+
+
+      renderProducts();
+
+      showToast(
+        "✅ Xayeysiiska waa la daray"
+      );
+
+
+      setTimeout(()=>{
+
+        showScreen("homeScreen");
+
+      },800);
+
+    }
+  );
+
+}
+
+
+/* =========================
+   SCREENS
+========================= */
+
+function showScreen(screenId){
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen=>{
+
+      screen.classList.remove(
+        "active"
+      );
+
+    });
+
+
+  const screen =
+    document.getElementById(
+      screenId
+    );
+
+
+  if(screen){
+
+    screen.classList.add(
+      "active"
+    );
+
+  }
+
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(button=>{
+
+      button.classList.remove(
+        "active"
+      );
+
+    });
+
+
+  if(screenId === "homeScreen"){
+
+    document
+      .getElementById("homeNav")
+      .classList.add("active");
+
+    renderProducts();
+
+  }
+
+
+  if(screenId === "favoritesScreen"){
+
+    document
+      .getElementById("favoriteNav")
+      .classList.add("active");
+
+    renderFavorites();
+
+  }
+
+
+  if(screenId === "profileScreen"){
+
+    document
+      .getElementById("profileNav")
+      .classList.add("active");
+
+  }
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer = null;
+
+
+function showToast(message){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+  if(!toast) return;
+
+
+  toast.textContent =
+    message;
+
+  toast.style.display =
+    "block";
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(()=>{
+
+      toast.style.display =
+        "none";
+
+    },2500);
+
+}
+
+
+/* =========================
+   START APP
+========================= */
+
+renderProducts();
+
+renderFavorites();
+
+</script>
+
+</body>
+</html>
